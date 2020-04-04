@@ -1,0 +1,20 @@
+################################################################################################################################################
+
+sudo apt install openjdk-8-jdk openjdk-8-jre
+
+./solr create_core -c cord19_paragraph_index
+
+
+curl -X POST -H 'Content-type:application/json' --data-binary {'
+"add-field" : {"name": "source", "type": "string", "multiValued": false, "indexed": true, "stored": true, "termVectors": false}
+"add-field" : {"name": "title", "type": "string", "multiValued": false, "indexed": true, "stored": true, "termVectors": false}
+"add-field" : {"name": "authors", "type": "string", "multiValued": false, "indexed": true, "stored": true, "termVectors": false}
+"add-field" : {"name": "paragraph", "type": "text_general", "multiValued": false, "indexed": true, "stored": true, "termVectors": false}
+"add-field" : {"name": "index_key", "type": "pint", "multiValued": false, "indexed": true, "stored": true, "termVectors": false}
+}' http://localhost:8157/solr/cord19_paragraph_index/schema
+
+
+
+./post -p 8157 -c cord19_paragraph_index /home/santosh/Work/Datasets/cord-19-json/solr_paragraphs_index.json
+
+./solr delete -c cord19_paragraph_index
