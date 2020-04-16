@@ -7,6 +7,7 @@ sudo apt install openjdk-8-jdk openjdk-8-jre
 
 curl -X POST -H 'Content-type:application/json' --data-binary {'
 "add-field" : {"name": "source", "type": "string", "multiValued": false, "indexed": true, "stored": true, "termVectors": false}
+"add-field" : {"name": "date_published", "type": "string", "multiValued": false, "indexed": true, "stored": true, "termVectors": false}
 "add-field" : {"name": "title", "type": "string", "multiValued": false, "indexed": true, "stored": true, "termVectors": false}
 "add-field" : {"name": "authors", "type": "string", "multiValued": false, "indexed": true, "stored": true, "termVectors": false}
 "add-field" : {"name": "paragraph", "type": "text_general", "multiValued": false, "indexed": true, "stored": true, "termVectors": false}
